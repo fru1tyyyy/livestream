@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Livestream Reaction Engine</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>Livestream Reaction Engine</h1>
+    <span class="live-pill">LIVE</span>
+  </header>
+
+  <main class="stage" id="stage">
+    <div class="stage__video" aria-hidden="true">
+      <p>Your livestream here</p>
+    </div>
+
+    <div class="reaction-layer" id="reaction-layer" aria-hidden="true"></div>
+
+    <div class="spawn-area" id="spawn-area" aria-hidden="true"></div>
+  </main>
+
+  <footer class="controls">
+    <fieldset class="control mode">
+      <legend>Mode</legend>
+      <label><input type="radio" name="mode" value="css" checked /> Phase 1 · CSS keyframes (layout props)</label>
+      <label><input type="radio" name="mode" value="gsap" /> Phase 2 · GSAP (x, y, scale, opacity)</label>
+    </fieldset>
+
+    <div class="control buttons">
+      <button type="button" id="send-btn" class="btn btn--primary">Send Reaction</button>
+      <button type="button" id="burst-btn" class="btn">Burst ×60</button>
+    </div>
+
+    <div class="control speed" id="speed-control">
+      <label for="speed">Speed <output id="speed-value">1.0×</output></label>
+      <input type="range" id="speed" min="0.1" max="2.0" step="0.1" value="1.0" />
+      <small id="speed-hint">GSAP mode only</small>
+    </div>
+
+    <div class="control stats">
+      <span>In DOM: <strong id="dom-count">0</strong></span>
+      <span>Peak: <strong id="peak-count">0</strong></span>
+    </div>
+  </footer>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="icon-heart" viewBox="0 0 24 24">
+        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+      </symbol>
+      <symbol id="icon-like" viewBox="0 0 24 24">
+        <path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/>
+      </symbol>
+      <symbol id="icon-fire" viewBox="0 0 24 24">
+        <path d="M13.5.67s.74 2.65.74 4.8c0 2.06-1.35 3.73-3.41 3.73-2.07 0-3.63-1.67-3.63-3.73l.03-.36C5.21 7.51 4 10.62 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8C20 8.61 17.41 3.8 13.5.67zM11.71 19c-1.78 0-3.22-1.4-3.22-3.14 0-1.62 1.05-2.76 2.81-3.12 1.77-.36 3.6-1.21 4.62-2.58.39 1.29.59 2.65.59 4.04 0 2.65-2.15 4.8-4.8 4.8z"/>
+      </symbol>
+      <symbol id="icon-star" viewBox="0 0 24 24">
+        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+  <script src="js/shared.js"></script>
+  <script src="js/phase1-css.js"></script>
+  <script src="js/phase2-gsap.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
